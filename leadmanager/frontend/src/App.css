@@ -1,0 +1,15 @@
+.test{
+    color:green;
+}
+.leaflet-container{
+    width: 400px;
+    height: 400px;
+}
+.leaflet-container.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag{
+    width: 400px;
+    height: 400px;
+}
+#map{
+    width: 400px;
+    height: 400px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if data %}
+        {% for d in data %}
+            <p>{{d.countyname_id}} had {{d.numcases}}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
