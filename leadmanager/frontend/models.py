@@ -27,4 +27,12 @@ class Counties(models.Model):
         managed = False
         db_table = 'counties'
 
+class Casesbydate(models.Model):
+    getnumcases = JSONField()  # This field type is a guess.
+    recordeddate = models.DateField(blank=True, null=True)
+    id = models.IntegerField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'casesbydate'
 

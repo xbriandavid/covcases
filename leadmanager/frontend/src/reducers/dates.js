@@ -1,19 +1,31 @@
 // THIS FILE HOLDS THE DATES reducer 
 
-import {changeDate} from 'leadmanager/frontend/src/actions/types.js'
+import {changeDate, currentDate, yesterday, dayBeforeYesterday} from '../actions/types.js'
+import {bayd} from '../components/density.js'
+import {countyRecords} from '../prevDaysRecords.js'
 
 const initialState = {
-    chosenDate: ""
-}
+    data: bayd,
+    displaydate: {
+        "selectedDate":currentDate,
+        "yesterdayDate": yesterday,
+        "dayBeforeDate": dayBeforeYesterday
+    },
+    prevData: countyRecords
+};
 
 // Reducer for changing the date 
-export default function(state = initialState, action){
+
+export default function dates(state = initialState, action){
     switch(action.type){
         case changeDate:
-            return{
-                chosenDate: action.payload
+            return {
+                ...state,
+                data: action.payload,
+                displaydate: action.payloadDate,
+                prevData: action.payloadPrevData
             };
-        deafult:
+        default:
             return state;
     }
 }

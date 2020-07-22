@@ -1,2 +1,2 @@
-import App from './components/App.js';
-import '/Users/fetch/lead-manager/leadmanager/frontend/src/App.css'
+import Otherapp from './components/Otherapp.js';
+import '/Users/briandavid/covcases/leadmanager/frontend/src/components/App.css'

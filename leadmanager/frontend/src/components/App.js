@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import L from 'leaflet'
 import '/Users/fetch/lead-manager/leadmanager/frontend/src/App.css'
-import {Provider} from 'react-redux'
-import store from '/Users/fetch/lead-manager/leadmanager/frontend/src/store.js';
 
 export class App extends Component {
     componentDidMount(){

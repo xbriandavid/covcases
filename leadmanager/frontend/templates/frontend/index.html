@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
+   <link rel="stylesheet" type="css" href="./root.css" />
     <title>Lead manager</title>
 </head>
 <body>
@@ -13,16 +14,6 @@
     {% load static %}
     <script src = "{% static "frontend/main.js"%}"></script>
     {% load static %}
-
-
-    {% for p in post %}
-    {% if p.countyName == 'Alameda' %}
-    <h1>{{p.Date}}</h1>
-    {% endif %}
-    <ul>
-    <li>{{p.countyName}} had {{p.casesNum}} cases</li>
-    </ul>
-    {% endfor %}
 
 </body>
 </html>
