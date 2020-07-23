@@ -35,7 +35,7 @@ def dateform(request):
             date = form.cleaned_data['date']
             do = datetime.datetime.strptime(date, "%m-%d-%Y")
             renderthis = Cases.objects.filter(recordeddate__exact = do)
-    return render(request, './frontend/formpage.html', {'form':form, 'data': renderthis})
+    return render(request, 'frontend/formpage.html', {'form':form, 'data': renderthis})
 
 class CasesView(generics.ListAPIView):
     queryset = Cases.objects.all()
