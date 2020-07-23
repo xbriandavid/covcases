@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-rest-knox = "*"
 psycopg2-binary = "*"
 dj-database-url = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
