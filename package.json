@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development ./src/index.js --output ./articles/static/frontend/main.js",
-    "build": "webpack --mode lsproduction ./src/index.js --output ./static/frontend/main.js",
+    "build": "webpack --mode production ./src/index.js --output ./static/frontend/main.js",
     "postinstall": "./node_modules/webpack/bin/webpack.js",
     "webpack": "./node_modules/webpack/bin/webpack.js --progress --colors --watch"
   },
