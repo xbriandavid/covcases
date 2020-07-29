@@ -20,6 +20,7 @@
 .Divider{
     display:flex;
     height: 100%;
+    min-height: 50%;
     position: fixed;
     left:0px;
     top: 0px;
@@ -87,16 +88,17 @@
       font-size: 20px;
       color: #777;
     }
-.panelLayout{
+#panelLayout{
   display: flex;
   flex-direction: column;
   position: absolute;
   text-align: center;
+  align-items: center;
 }
 .SIDEPANEL h3{
   display: inline-block;
   color: #50c889;
-  font-size: 35px;
+  font-size: 2.5vw;
   font-family: 'PT Sans', sans-serif;
   font-weight: 1100;
   margin-bottom: 0px;
@@ -108,21 +110,21 @@
   flex-direction: column;
   background-color:rgba(72,84,97, 0.65);
   height: 100vh;
-  width: 40vh;
+  width: 25vw;
   text-align: center;
   align-items: center;
-  
 }
 
 #rectangle{
   height:4px;
   background-color: #50c889;
   margin-top: 0px;
-  width:100%;
-  animation: slide 0.5s;
-  animation-iteration-count: 1;
+  padding-left: 20px;
+  width:20vw;
+ /* animation: slide 0.5s;
+  animation-iteration-count: 1;*/
 }
-
+/*
 @keyframes slide{
   0%{
     width: 0%;
@@ -131,9 +133,35 @@
     width: 100%;
   }
 }
-
+*/
 #cases{
   margin-top: 10%;
   color: #212121;
 }
 
+#temperatures{
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+#changeInCases{
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  border: 2px #50c878;
+}
+
+#svg-content-responsive{
+  display: inline-block;
+  position: absolute;
+}
+
+.cases-change-text{
+  font-size: 11px;
+  fill: #50c889;
+  font-family: 'PT Sans', sans-serif;
+}
