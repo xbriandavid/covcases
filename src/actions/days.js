@@ -3,7 +3,7 @@
 
 // ACTION CREATOR 
 // We will also make http requests. 
-import {changeDate} from './types.js'
+import {changeDate, threeDayView} from './types.js'
 import {bayd} from '../components/density.js'
 import {countyRecords} from '../prevDaysRecords.js'
 const startingDate = "2020-04-01"
@@ -73,11 +73,10 @@ export const changedate = (submittedDate, day1, day2) => dispatch => {
                 type: changeDate,
                 payload: newData,
                 payloadDate: {
-                    "selectedDate": createShortDate(submittedDate),
+                    "dayBeforeDate": dayBeforeYest,
                     "yesterdayDate": yesterday,
-                    "dayBeforeDate": dayBeforeYest},
-                payloadPrevData:clonedArray
-
+                    "selectedDate": createShortDate(submittedDate)},
+                payloadPrevData:clonedArray,
             })
         }).catch((error) => console.log(error))
 }

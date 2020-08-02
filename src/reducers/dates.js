@@ -7,9 +7,9 @@ import {countyRecords} from '../prevDaysRecords.js'
 const initialState = {
     data: bayd,
     displaydate: {
-        "selectedDate":currentDate,
+        "dayBeforeDate": dayBeforeYesterday,
         "yesterdayDate": yesterday,
-        "dayBeforeDate": dayBeforeYesterday
+        "selectedDate":currentDate,
     },
     prevData: countyRecords
 };
@@ -23,7 +23,7 @@ export default function dates(state = initialState, action){
                 ...state,
                 data: action.payload,
                 displaydate: action.payloadDate,
-                prevData: action.payloadPrevData
+                prevData: action.payloadPrevData,
             };
         default:
             return state;

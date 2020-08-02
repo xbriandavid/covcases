@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import L from 'leaflet';
 import $ from 'jquery'
 import * as d3 from 'd3'
-
+import {xAxisSpacing} from '../actions/types'
 
 export class Mapobject extends Component{
     constructor(props){
@@ -37,7 +37,7 @@ export class Mapobject extends Component{
         side_panel.update = ((countyName, casesnum) => {
             side_panel._div.innerHTML = (casesnum ? "<div id = 'panelLayout'><h3>"+
             countyName + "</h3><div id = 'rectangle'></div><h4 id = 'cases'>"+
-            casesnum+" cases</h4><div id = 'temperatures'></div><div id = 'changeInCases'></div></div>"
+            casesnum.toLocaleString()+" cases</h4><div id = 'temperatures'></div><div id = 'changeInCases'></div></div>"
             : "<h2>Hover on a county</h2>")
 
             // ========== Line Graph ===========
@@ -51,14 +51,24 @@ export class Mapobject extends Component{
             var svg = d3.select("#temperatures")
                         .append("svg")
                         .attr("preserveAspectRatio", "xMinYMin meet")
-                        .attr("viewBox", "-65 -50 300 500")
+                        .attr("viewBox", "-55 -50 300 500")
                         .classed("svg-content-responsive", true)
                         .append("g")
             
             var labels = Object.values(this.props.currentDate).filter(val => val !== null)
+            const xAxisRange = () => {
+                switch(labels.length){
+                    case 1:
+                        return xAxisSpacing[1]
+                    case 2:
+                        return xAxisSpacing[2]
+                    default:
+                        return xAxisSpacing[3]
+                 }
+            }
             var xAxis = d3.scaleOrdinal()
                             .domain(labels.map(date => date))
-                            .range([25, 125, 205])
+                            .range(xAxisRange())
             var xAxisLine = svg.append("g").call(d3.axisBottom(xAxis)).attr("transform", "translate(0, 400)")
             xAxisLine.select("path").attr("stroke", "#212121").style("stroke-width", "3")
             xAxisLine.selectAll(".tick").style("color", "#212121").style("stroke-width", "2")
@@ -75,7 +85,7 @@ export class Mapobject extends Component{
             const matchedPrevCovData = this.props.prevCovData.filter(val => val.county == countyName)
             
             if(matchedPrevCovData.length != 0){
-                var dataByDate = [casesnum, matchedPrevCovData[0].prevDay, matchedPrevCovData[0].beforePrevDay].filter(
+                var dataByDate = [matchedPrevCovData[0].beforePrevDay, matchedPrevCovData[0].prevDay, casesnum].filter(
                     val => val !== null
                 )
                 var yAxis = d3.scaleLinear()
@@ -111,15 +121,15 @@ export class Mapobject extends Component{
                     .attr("stroke-dashoffset", totalLength)
                     .transition()
                     .duration(1000)
-                    .attr("stroke-dashoffset", totalLength*2)
+                    .attr("stroke-dashoffset", 0)
 
                 var changesvg = d3.select("#changeInCases")
                                .append("svg")
                                .attr("preserveAspectRatio", "xMinYMin meet")
                                .attr("viewBox", "-20 -15 100 100")
 
-                if(dataByDate.length > 1){
-                    const dayChangeCases = dataByDate[0] - dataByDate[1]
+                if(dataByDate.length >= 2){
+                    const dayChangeCases = dataByDate[dataByDate.length-1] - dataByDate[dataByDate.length-2]
                     changesvg.append("text").text("+"+dayChangeCases+" new cases").classed("cases-change-text", true)
     
                 }
